@@ -1,10 +1,30 @@
 @import "tailwindcss";
 
+/* body {
+} */
+
 .sectionBase {
     width: full;
     height: full;
     padding: 10px;
 }
+
+.primary_bg {
+    background-color: #e8640c0e;
+}
+
+.textcolor {
+    color: #ea6a12;
+}
+
+.btn_bg {
+    background-color: #ea6a12;
+}
+
+.btn_bg:hover {
+    background-color: #d35f10;
+}
+
 
 @media screen and ( min-width: 768px) and ( max-width: 1023px ) {
     .sectionBase {
