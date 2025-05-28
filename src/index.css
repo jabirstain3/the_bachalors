@@ -13,8 +13,15 @@
     background-color: #e8640c0e;
 }
 
+.secondery_bg {
+    background-color: #fef5bd;
+}
+
 .textcolor {
     color: #ea6a12;
+}
+.textcolor:hover {
+    color: #d35f10;
 }
 
 .btn_bg {
