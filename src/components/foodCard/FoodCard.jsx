@@ -12,7 +12,7 @@ const FoodCard = ({item}) => {
         goTo(`Items/${id}`);
     }
     return (
-        <div className="w-full max-w-[320px] md:max-w-[360px] bg-white hover:bg-[#e6c88c56] boxShadow rounded-xl">
+        <div className="w-full max-w-[320px] md:max-w-[360px] bg-white hover:bg-[#e6c88c56] boxShadow rounded-xl shadow-lg">
             <div className="flex items-center justify-between w-full p-4">
                 <h2 className="text-[1.4rem] font-semibold">{name}</h2>
                 <div className="flex items-center gap-[5px]">

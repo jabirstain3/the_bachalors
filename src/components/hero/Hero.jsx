@@ -4,7 +4,7 @@ const Hero = () => {
     const goTo = useToRoute();
 
     const handalViewAllFoods = () => {
-        goTo('/foods');
+        goTo('/items');
     }
 
     return (
