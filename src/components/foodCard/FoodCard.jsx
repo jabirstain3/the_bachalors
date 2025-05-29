@@ -21,7 +21,7 @@ const FoodCard = ({item}) => {
                 </div>
             </div>
 
-            <img src={image} alt={name} className="w-full" />
+            <img src={image} alt={name} className="w-full aspect-3/2" />
 
             <div className="p-4">
                 <p className="text-[1rem] text-gray-700">{origin}</p>

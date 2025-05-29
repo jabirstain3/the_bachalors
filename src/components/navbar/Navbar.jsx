@@ -23,9 +23,8 @@ const Navbar = () => {
 
     const { name, photo } = user;
 
-
     const navlinks = [
-        {name: "All Foods", path: "foods"},
+        {name: "All Foods", path: "items"},
         {name: "Gallery", path: "foodgallery"},
     ]
 
