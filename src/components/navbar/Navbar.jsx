@@ -64,7 +64,7 @@ const Navbar = () => {
                     {
                         navlinks.map((link, index) => (
                             <li key={index} className={` border-b-[2px] border-transparent transition-all duration-500 cursor-pointer capitalize  hover:border-b-[#ea6a12] text-gray-500 hover:text-[#ea6a12]`}>
-                                <NavLink to={link.path} className={({ isActive, }) => isActive ? "hover:text-[#5993bb] text-[#499eeeec] font-medium" : "" }>{link.name}</NavLink> 
+                                <NavLink to={link.path} className={({ isActive, }) => isActive ? "text-[#ea6a12] font-medium" : "" }>{link.name}</NavLink> 
                             </li>
                         ))
                     }
@@ -134,7 +134,7 @@ const Navbar = () => {
 
                 {/* mobile sidebar */}
                 <aside  className={` ${mobileSidebarOpen ? "translate-x-0 opacity-100 z-20" : "hidden translate-x-[200px] opacity-0 z-[-1]"} w-[150px] md:hidden bg-white p-4 text-center absolute top-[55px] right-0 sm:w-[300px] rounded-md transition-all duration-300`}>
-                    <ul className="items-start gap-[10px] text-[1rem] text-gray-800 flex flex-col">
+                    <ul className="items-start gap-[10px] text-[1rem] flex flex-col">
                         <li className={`border-b-[2px] border-transparent transition-all duration-500 cursor-pointer capitalize  hover:border-b-[#ea6a12] text-gray-500 hover:text-[#ea6a12]`}>
                             <NavLink to='/' className={({ isActive, }) => isActive ? "text-[#ea6a12] font-medium" : "" }>Home</NavLink> 
                         </li>
