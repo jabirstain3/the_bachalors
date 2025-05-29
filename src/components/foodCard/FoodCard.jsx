@@ -4,7 +4,7 @@ import { BiSolidLeaf } from "react-icons/bi";
 
 const FoodCard = ({item}) => {
     const goTo = useToRoute()
-    console.log(item);
+    // console.log(item);
 
     const { _id:id, foodName:name, foodImage:image, price, origin } = item
 
