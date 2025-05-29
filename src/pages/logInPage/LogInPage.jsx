@@ -28,7 +28,7 @@ const LogInPage = () => {
     }
 
     return (
-        <div className="mx-auto flex items-center secondery_bg justify-center h-screen ">
+        <div className="mx-auto flex items-center justify-center h-screen secondery_bg">
             <div className="py-10 md:py-20 px-20 md:px-32 grid gap-5 rounded-xl">
                 <h1 className="text-4xl text-center font-bold text-black">Log In</h1>
 
