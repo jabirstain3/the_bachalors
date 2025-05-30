@@ -1,18 +1,32 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { NavLink, useLocation } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContextProvider";
+import { useToRoute } from "../../hooks/navigation/useToRoute";
+import Loader from "../../components/loader/Loader";
 
 
 const RegistrationPage = () => {
     const [ show, setShow ] = useState(false);
     const  [ currectFormate, setcurrectFormate ] = useState(true);
+    const { createUser, googleUser, authLoading, updateUserProfile } = useContext(AuthContext);
     const location = useLocation();
-
+    const goTo = useToRoute();
 
     document.title = "Register in to The Bachalors";
 
-    const HandelRegistrationWithGoogle = () =>{
+    const dest = location.state?.from?.pathname || "/";
+    // console.log(dest);
 
+    if (authLoading){
+        return <div className="w-full h-screen">
+            <Loader/>
+        </div>
+    }
+
+    const HandelRegistrationWithGoogle = () =>{
+        googleUser()
+        goTo(dest);
     }
 
     const isValidPassword = (pwd) => {
@@ -25,9 +39,6 @@ const RegistrationPage = () => {
         }
     };
 
-    const dest = location.state?.from?.pathname || "/";
-    console.log(dest);
-
     const HandelRegistration = (e) =>{
         e.preventDefault();
         // console.log(e);
@@ -36,7 +47,23 @@ const RegistrationPage = () => {
         const password = e.target.password.value;
         const photo = e.target.photo.value;
         const user = { name, email, password, photo };
-        console.log(user);    
+        // console.log(user);    
+
+        createUser(email, password)
+            .then((result) =>{
+                // console.log(result.user);
+                e.target.reset();
+                updateUserProfile(user)
+                    .then(() =>{
+                        goTo('/login');
+                    })
+                    .catch((error)=>{
+                        console.log(error.message);
+                    })
+                })
+            .catch((error)=>{
+                console.log(error.message);
+            })
     }
 
     return (

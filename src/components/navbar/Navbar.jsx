@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useToRoute } from "../../hooks/navigation/useToRoute";
 import { NavLink } from "react-router-dom";
 import { FiUser } from "react-icons/fi";
@@ -9,21 +9,16 @@ import { AiOutlineAppstoreAdd, AiOutlineProduct } from "react-icons/ai";
 import { IoSettingsOutline } from "react-icons/io5";
 import { LiaClipboardListSolid } from "react-icons/lia";
 import { PiUserCircleFill } from "react-icons/pi";
+import { AuthContext } from "../../contexts/AuthContextProvider.jsx";
 
 const Navbar = () => { 
     const [accountMenuOpen, setAccountMenuOpen] = useState(false);
     const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
     const goTo = useToRoute();
+    const { user, logOut } = useContext(AuthContext);
     // console.log(user);
     
-    const user = {
-        name: "User",
-        photo: "user",
-        email: "anna@example.com",
-    }
-
-    const userbase = user.email ? user.email.split('@')[0] : "user";
-    const { name, photo } = user;
+    const { displayName:name, photoURL:photo, uid:userbase } = user || { displayName:"User", photoURL: "notavailavle", };
 
     const navlinks = [
         {name: "All Foods", path: "items"},
@@ -35,6 +30,7 @@ const Navbar = () => {
     }
 
     const handelLogOut = () =>{
+        logOut()
         goTo('/')
     }
 

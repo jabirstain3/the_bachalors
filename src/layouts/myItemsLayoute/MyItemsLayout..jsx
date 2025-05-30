@@ -1,21 +1,19 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Loader from "../../components/loader/Loader";
 import MyItemCard from "../../components/myItemCard/MyItemCard";
+import { AuthContext } from "../../contexts/AuthContextProvider";
 
 const MyItemsLayout = () => {
     const [ loading, setLoading ] = useState(false)
     const [ items, setItems ] = useState([])
-    
-    const user = {
-        email: "anna@example.com",
-    }
+    const { user } = useContext(AuthContext);
     // console.log(user);
     
     document.title = `The Bachalors - Added product`;
 
     useEffect(() => {
         setLoading(true)
-        fetch(`${import.meta.env.VITE_DOMAIN}/${user.email}/items`)
+        fetch(`${import.meta.env.VITE_DOMAIN}/${user?.email}/items`)
             .then((res) => res.json())
             .then((data) => {
                 // console.log(data);

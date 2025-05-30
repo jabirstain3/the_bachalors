@@ -1,13 +1,14 @@
 import { FaStar } from "react-icons/fa6"
 import { useToRoute } from "../../hooks/navigation/useToRoute";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../contexts/AuthContextProvider";
 
 const ItemDetailsCard = ({ item }) => {
+    const [isModalVisible, setIsModalVisible] = useState(false);    
     const goTo = useToRoute();
-    console.log(item);
-    const user ={
-        displayName: "Anna",
-        email: "anna@example.com",
-    }
+    // console.log(item);
+    const { user } = useContext(AuthContext);
+    
 
     document.title = `The Bachalors - ${item.foodName || "Item Details"}`;
 
@@ -20,6 +21,14 @@ const ItemDetailsCard = ({ item }) => {
         itemPrice: price,
         itemQuantity: 1,
     };
+
+    const handalUpdateBtn = () => {
+        goTo(`/item/${id}/update`, item)
+    }
+
+    const handalDeleteBtn = () => {
+        setIsModalVisible(true)
+    }
 
     const handelPurchase = () => {
         goTo(`/item/${id}/puechase`, order );
@@ -66,13 +75,31 @@ const ItemDetailsCard = ({ item }) => {
                             <span className="text-[1.5rem] text-[#ea6a12] font-medium">${price}</span>
                         </div>
 
-                        <div className="flex flex-col md:flex-row gap-4">
-                            <button className="flex-1 py-3 px-4 rounded-lg  font-medium text-white btn_bg" onClick={handelPurchase} isDisabled={usersEmail === user.email}>
-                                Purchase
-                            </button>
+                        <div className="flex items-center gap-4 mt-4">
+                            {
+                                usersEmail === user?.email ? (
+                                    <div className="flex-1 flex items-center gap-4">
+                                        <button onClick={handalUpdateBtn} className="w-1/2 py-3 px-4 rounded-lg  font-medium text-white btn_bg" >
+                                            Update
+                                        </button> 
+                                    
+                                        <button onClick={handalDeleteBtn} className="w-1/2 py-3 px-4 rounded-lg  font-medium text-white btn_bg">
+                                            Delete
+                                        </button>
+                                    </div>
+                                ):
+                                (
+                                    <button className="flex-1 py-3 px-4 rounded-lg  font-medium text-white btn_bg" onClick={handelPurchase}>
+                                        Purchase
+                                    </button>
+                                )}
                         </div>
                     </div>
                 </div> )
+            }
+                        
+            {
+                isModalVisible && <ConfiramRemovalModal id={id} isModalOpen={isModalVisible} setIsModalOpen={setIsModalVisible}/>
             }
         </div>
     );

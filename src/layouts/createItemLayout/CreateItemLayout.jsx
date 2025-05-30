@@ -1,13 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Loader from "../../components/loader/Loader";
+import { AuthContext } from "../../contexts/AuthContextProvider";
 
 const CreateItemLayout = () => {
     const [loading, setLoading] = useState(false);
-    const user = {
-        displayName: "Anna",
-        email: "anna@example.com",
-    }
-
+    const { user } = useContext(AuthContext);
     document.title = "The Bachalors - Add Food";
 
     const { displayName: userName, email, } = user || { displayName:"User", email: "notavailavle", };

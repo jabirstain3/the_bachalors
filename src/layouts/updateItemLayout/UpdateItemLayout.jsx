@@ -1,15 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
+import { AuthContext } from "../../contexts/AuthContextProvider";
 
 const UpdateItemLayout = () => {
     const [ loading, setLoading ] = useState(false);
     const [ item, setItem ] = useState({});
     const { id } = useParams();
-    const user = {
-        displayName: "Anna",
-        email: "anna@example.com",
-    }
+    const { user } = useContext(AuthContext);
     // console.log(id);
 
     document.title = "The Bachalors - Update Food item";

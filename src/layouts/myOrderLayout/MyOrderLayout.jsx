@@ -1,21 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import OrdersTable from '../../components/ordersTable/OrdersTable';
 import Loader from '../../components/loader/Loader';
+import { AuthContext } from '../../contexts/AuthContextProvider';
 
 const MyOrderLayout = () => {
     const [ loading, setLoading ] = useState(false)
     const [ orders, setOrders ] = useState([])
-    
-    document.title = "Equi Sports - My Orders";
+    console.log(orders);
+    const { user } = useContext(AuthContext);
 
-    const user = {
-        displayName: "John Doe",
-        email: "anna@example.com",
-    }
+    document.title = "Equi Sports - My Orders";
 
     useEffect(() => {
         setLoading(true)
-        fetch(`${import.meta.env.VITE_DOMAIN}/${user.email}/orders`)
+        fetch(`${import.meta.env.VITE_DOMAIN}/${user?.email}/orders`)
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);

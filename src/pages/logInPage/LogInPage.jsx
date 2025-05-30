@@ -1,17 +1,26 @@
 import { NavLink, useLocation } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../contexts/AuthContextProvider";
+import Loader from "../../components/loader/Loader";
+import { useToRoute } from "../../hooks/navigation/useToRoute";
 
 
 const LogInPage = () => { 
     const [show, setShow] = useState(false)
     const location = useLocation();
+    const goTo = useToRoute();
+    const { logInUser, googleUser, authLoading }= useContext(AuthContext);
 
     document.title = "Log in to The Bachalors";
     const dest = location.state || "/";
     // console.log(dest);
     
-
+    if (authLoading){
+        return <div className="w-full h-screen">
+            <Loader/>
+        </div>
+    }
     const handelLogInWithEmail = (e) =>{
 
         e.preventDefault();
@@ -21,10 +30,26 @@ const LogInPage = () => {
         const password = e.target.password.value;
         console.log(email, password);
 
+        logInUser(email, password)
+            .then((result) =>{
+                // console.log(result.user);
+                e.target.reset();
+                goTo(dest);
+            })
+            .catch((error)=>{
+                console.log(error.message);
+            })
     }
 
     const handelLogInWithGoogle = () => {
-        
+        googleUser()
+            .then((result) =>{
+                // console.log(result.user);
+                goTo(dest);
+            })
+            .catch((error)=>{
+                console.log(error.message);
+            })
     }
 
     return (

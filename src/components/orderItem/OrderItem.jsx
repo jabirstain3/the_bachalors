@@ -1,16 +1,18 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Loader from '../loader/Loader';
 import { useToRoute } from '../../hooks/navigation/useToRoute';
+import { AuthContext } from '../../contexts/AuthContextProvider';
 
 const OrderItem = () => {
     const { state } = useLocation();
     const [loading, setLoading] = useState(false);
     const goTo = useToRoute();
+    const { user } = useContext(AuthContext);
 
     const { itemId, itemName, itemImage, itemPrice, itemQuantity } = state || {};
-    const userName = "John Doe"; 
-    const UserEmail = "@gmail.com";
+    const userName = user?.displayName || "User"; 
+    const UserEmail = user?.email || "user@gmail.com";
     const orderQuantity = itemQuantity || 1;
 
     const orderDate = new Date().toLocaleDateString(); 

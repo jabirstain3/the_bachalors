@@ -11,6 +11,7 @@ import MyItemsLayout from "../layouts/myItemsLayoute/MyItemsLayout..jsx";
 import CreateItemLayout from "../layouts/createItemLayout/CreateItemLayout.jsx";
 import UpdateItemLayout from "../layouts/updateItemLayout/UpdateItemLayout.jsx";
 import MyOrderLayout from "../layouts/myOrderLayout/MyOrderLayout.jsx";
+import ProtectedRoute from "../routes/protectedRoute/ProtectedRoute.jsx";
 
 const router = createBrowserRouter([
     {
@@ -28,7 +29,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "add_items",
-                element: <CreateItemLayout />,                
+                element: <ProtectedRoute> <CreateItemLayout /> </ProtectedRoute>,                
             },
             {
                 path: "item/:id",
@@ -36,19 +37,19 @@ const router = createBrowserRouter([
             },
             {
                 path: "item/:id/update",
-                element: <UpdateItemLayout />,                
+                element: <ProtectedRoute> <UpdateItemLayout /> </ProtectedRoute>,                
             },
             {
                 path: "item/:id/puechase",
-                element: <OrderItem />,                
+                element: <ProtectedRoute> <OrderItem /> </ProtectedRoute>,                
             },
             {
                 path: ":userbase/items",
-                element: <MyItemsLayout />,                
+                element: <ProtectedRoute> <MyItemsLayout /> </ProtectedRoute>,                
             },
             {
                 path: ":userbase/my_orders",
-                element: <MyOrderLayout />,                
+                element: <ProtectedRoute> <MyOrderLayout /> </ProtectedRoute>,                
             },
         ]
     },

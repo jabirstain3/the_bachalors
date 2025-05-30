@@ -4,7 +4,7 @@ import { MdDeleteOutline, MdOutlineEdit } from "react-icons/md";
 import { IoEyeOutline } from "react-icons/io5";
 import { useToRoute } from "../../hooks/navigation/useToRoute";
 
-const OrdersTable = ({ products }) => {
+const OrdersTable = ({ orders }) => {
     const columns = ["foodName", "quantity", "price", "buyingDate"];
     const goTo = useToRoute();
 
@@ -22,15 +22,15 @@ const OrdersTable = ({ products }) => {
 
     // Sort by price if selected
     const priceSortedData = useMemo(() => {
-        if (priceSort === "default") return products;
-        return [...products].sort((a, b) => {
+        if (priceSort === "default") return orders;
+        return [...orders].sort((a, b) => {
             const priceA = Number(a.price) || 0;
             const priceB = Number(b.price) || 0;
             if (priceSort === "low") return priceA - priceB;
             if (priceSort === "high") return priceB - priceA;
             return 0;
         });
-    }, [products, priceSort]);
+    }, [orders, priceSort]);
 
     // Handle search
     const filteredData = useMemo(() => {
