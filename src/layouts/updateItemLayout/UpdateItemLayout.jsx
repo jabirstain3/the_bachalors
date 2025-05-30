@@ -2,12 +2,14 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
 import { AuthContext } from "../../contexts/AuthContextProvider";
+import { useToast } from "../../hooks/alart/useToast";
 
 const UpdateItemLayout = () => {
     const [ loading, setLoading ] = useState(false);
     const [ item, setItem ] = useState({});
     const { id } = useParams();
     const { user } = useContext(AuthContext);
+    const toast = useToast();
     // console.log(id);
 
     document.title = "The Bachalors - Update Food item";
@@ -50,7 +52,7 @@ const UpdateItemLayout = () => {
                 // console.log(data);
                 setItem(updateditem);
                 if(data.modifiedCount > 0) {
-                    // toast("success" , "Product Updated Successfully.");
+                    toast("success" , "Saved Changes Successfully.");
                 }
             })
             .catch((error) => {

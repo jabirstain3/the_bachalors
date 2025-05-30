@@ -4,12 +4,14 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContextProvider";
 import Loader from "../../components/loader/Loader";
 import { useToRoute } from "../../hooks/navigation/useToRoute";
+import { useToast } from "../../hooks/alart/useToast";
 
 
 const LogInPage = () => { 
     const [show, setShow] = useState(false)
     const location = useLocation();
     const goTo = useToRoute();
+    const toast = useToast();
     const { logInUser, googleUser, authLoading }= useContext(AuthContext);
 
     document.title = "Log in to The Bachalors";
@@ -34,6 +36,7 @@ const LogInPage = () => {
             .then((result) =>{
                 // console.log(result.user);
                 e.target.reset();
+                toast("success", "Log In Successful.");
                 goTo(dest);
             })
             .catch((error)=>{
@@ -45,6 +48,7 @@ const LogInPage = () => {
         googleUser()
             .then((result) =>{
                 // console.log(result.user);
+                toast("success", "Log In Successful.");
                 goTo(dest);
             })
             .catch((error)=>{

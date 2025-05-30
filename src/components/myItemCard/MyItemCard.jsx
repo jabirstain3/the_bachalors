@@ -44,7 +44,7 @@ const MyItemCard = ({ item }) => {
             </div>
 
             {
-                isModalVisible && <ConfiramRemovalModal id={id} isModalOpen={isModalVisible} setIsModalOpen={setIsModalVisible}/>
+                isModalVisible && <ConfiramRemovalModal id={id} set={"items"} isModalOpen={isModalVisible} setIsModalOpen={setIsModalVisible}/>
             }
         </div>
     );

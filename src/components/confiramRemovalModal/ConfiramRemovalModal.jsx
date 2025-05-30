@@ -1,10 +1,12 @@
 import {RxCross1} from "react-icons/rx";
+import { useToast } from "../../hooks/alart/useToast";
 
-const ConfiramRemovalModal = ({ id, isModalOpen, setIsModalOpen }) => {
+const ConfiramRemovalModal = ({ id, set, isModalOpen, setIsModalOpen }) => {
     // const [isModalOpen, setIsModalOpen] = useState(true);
+        const toast = useToast();
 
     const HandalDelete = () => {
-        fetch(`${ import.meta.env.VITE_DOMAIN}/items/${id}`, {
+        fetch(`${ import.meta.env.VITE_DOMAIN}/${set}/${id}`, {
             method: "DELETE",
             headers: {
                 'content-type': 'application/json'
@@ -14,7 +16,7 @@ const ConfiramRemovalModal = ({ id, isModalOpen, setIsModalOpen }) => {
                 // console.log(data);
                 setIsModalOpen(false)
                 if(data.deletedCount > 0) {
-                    // toast("success" , "Product Deleted Successfully.");
+                    toast("success" , "Deleted Successfully.");
                 }
             })
             .catch((error) => {

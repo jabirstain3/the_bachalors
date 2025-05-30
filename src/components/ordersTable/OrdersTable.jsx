@@ -2,12 +2,12 @@ import { useEffect, useMemo, useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { MdDeleteOutline, MdOutlineEdit } from "react-icons/md";
 import { IoEyeOutline } from "react-icons/io5";
-import { useToRoute } from "../../hooks/navigation/useToRoute";
+import ConfiramRemovalModal from "../confiramRemovalModal/ConfiramRemovalModal";
 
 const OrdersTable = ({ orders }) => {
     const columns = ["foodName", "quantity", "price", "buyingDate"];
-    const goTo = useToRoute();
-
+    const [isModalVisible, setIsModalVisible] = useState(false); 
+    const [orderId, setOrderId] = useState("");
     const [search, setSearch] = useState("");
     const [openActionMenuId, setOpenActionMenuId] = useState(null);
     const [priceSort, setPriceSort] = useState("default");
@@ -16,8 +16,9 @@ const OrdersTable = ({ orders }) => {
         setOpenActionMenuId(openActionMenuId === id ? null : id);
     };
 
-    const handalViewDetails = (id) => {
-        goTo(`/product/${id}`);
+    const handalDelete = (id) => {
+        setOrderId(id);
+        setIsModalVisible(true);
     };
 
     // Sort by price if selected
@@ -95,11 +96,11 @@ const OrdersTable = ({ orders }) => {
                                                 <MdOutlineEdit />
                                                 Edit
                                             </p>
-                                            <p className="flex items-center gap-[8px] text-[0.9rem] py-1.5 px-2 w-full rounded-md text-gray-700 cursor-pointer hover:bg-gray-50 transition-all duration-200">
+                                            <p onClick={() => handalDelete(item._id)} className="flex items-center gap-[8px] text-[0.9rem] py-1.5 px-2 w-full rounded-md text-gray-700 cursor-pointer hover:bg-gray-50 transition-all duration-200">
                                                 <MdDeleteOutline />
                                                 Delete
                                             </p>
-                                            <p onClick={() => handalViewDetails(item._id)} className="flex items-center gap-[8px] text-[0.9rem] py-1.5 px-2 w-full rounded-md text-gray-700 cursor-pointer hover:bg-gray-50 transition-all duration-200">
+                                            <p  className="flex items-center gap-[8px] text-[0.9rem] py-1.5 px-2 w-full rounded-md text-gray-700 cursor-pointer hover:bg-gray-50 transition-all duration-200">
                                                 <IoEyeOutline />
                                                 View Details
                                             </p>
@@ -115,8 +116,13 @@ const OrdersTable = ({ orders }) => {
                             No data found!
                         </p>
                     )}
+
                 </div>
             </div>
+            
+            {
+                isModalVisible && <ConfiramRemovalModal id={orderId} set={"orders"} isModalOpen={isModalVisible} setIsModalOpen={setIsModalVisible}/>
+            }
         </div>
     );
 };

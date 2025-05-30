@@ -9,7 +9,7 @@ const MyOrderLayout = () => {
     console.log(orders);
     const { user } = useContext(AuthContext);
 
-    document.title = "Equi Sports - My Orders";
+    document.title = "The Bachalors - My Orders";
 
     useEffect(() => {
         setLoading(true)

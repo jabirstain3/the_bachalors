@@ -1,10 +1,14 @@
 import { useContext, useState } from "react";
 import Loader from "../../components/loader/Loader";
 import { AuthContext } from "../../contexts/AuthContextProvider";
+import { useToast } from "../../hooks/alart/useToast";
 
 const CreateItemLayout = () => {
     const [loading, setLoading] = useState(false);
     const { user } = useContext(AuthContext);
+    const toast = useToast();
+    // console.log(user);
+
     document.title = "The Bachalors - Add Food";
 
     const { displayName: userName, email, } = user || { displayName:"User", email: "notavailavle", };
@@ -43,7 +47,7 @@ const CreateItemLayout = () => {
                 setLoading(false)
                 // console.log(data);
                 if(data.insertedId) {
-                    // toast("success" , "Product Added Successfully.")
+                    toast("success" , "item Added Successfully.")
                 }
             })
             .catch((error) => {

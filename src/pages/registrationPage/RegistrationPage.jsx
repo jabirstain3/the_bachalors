@@ -4,6 +4,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContextProvider";
 import { useToRoute } from "../../hooks/navigation/useToRoute";
 import Loader from "../../components/loader/Loader";
+import { useToast } from "../../hooks/alart/useToast";
 
 
 const RegistrationPage = () => {
@@ -12,6 +13,7 @@ const RegistrationPage = () => {
     const { createUser, googleUser, authLoading, updateUserProfile } = useContext(AuthContext);
     const location = useLocation();
     const goTo = useToRoute();
+    const toast = useToast();
 
     document.title = "Register in to The Bachalors";
 
@@ -26,7 +28,14 @@ const RegistrationPage = () => {
 
     const HandelRegistrationWithGoogle = () =>{
         googleUser()
-        goTo(dest);
+            .then((result) =>{
+                // console.log(result.user);
+                toast("success", "Log In Successful.");
+                goTo(dest);
+            })
+            .catch((error)=>{
+                console.log(error.message);
+            })
     }
 
     const isValidPassword = (pwd) => {
@@ -53,6 +62,8 @@ const RegistrationPage = () => {
             .then((result) =>{
                 // console.log(result.user);
                 e.target.reset();
+                toast("success", "Registration Successful.");
+                
                 updateUserProfile(user)
                     .then(() =>{
                         goTo('/login');

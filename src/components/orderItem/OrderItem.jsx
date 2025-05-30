@@ -2,12 +2,14 @@ import { useContext, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Loader from '../loader/Loader';
 import { useToRoute } from '../../hooks/navigation/useToRoute';
+import { useToast } from '../../hooks/alart/useToast';
 import { AuthContext } from '../../contexts/AuthContextProvider';
 
 const OrderItem = () => {
     const { state } = useLocation();
     const [loading, setLoading] = useState(false);
     const goTo = useToRoute();
+    const toast = useToast();
     const { user } = useContext(AuthContext);
 
     const { itemId, itemName, itemImage, itemPrice, itemQuantity } = state || {};
@@ -44,7 +46,7 @@ const OrderItem = () => {
                 setLoading(false)
                 console.log(data);
                 if(data.insertedId) {
-                    // toast("success" , "Product Added Successfully.")
+                    toast("success" , "Order Successfully.")
                     goTo('/items')
                 }
             })
