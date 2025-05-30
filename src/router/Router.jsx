@@ -7,6 +7,7 @@ import RegistrationPage from "../pages/registrationPage/RegistrationPage.jsx";
 import AllItemsLayout from "../layouts/allItemsLayout/AllItemsLayout.jsx";
 import ItemDetailsLayout from "../layouts/itemDetailsLayout/ItemDetailsLayout.jsx";
 import OrderItem from "../components/orderItem/OrderItem.jsx";
+import MyItemsLayout from "../layouts/myItemsLayoute/MyItemsLayout..jsx";
 
 const router = createBrowserRouter([
     {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
             {
                 path: "item/:id/puechase",
                 element: <OrderItem />,                
+            },
+            {
+                path: ":userbase/items",
+                element: <MyItemsLayout />,                
             },
         ]
     },

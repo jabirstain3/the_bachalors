@@ -21,6 +21,7 @@ const Navbar = () => {
         photo: "user"
     }
 
+    const userbase = user.email ? user.email.split('@')[0] : "user";
     const { name, photo } = user;
 
     const navlinks = [
@@ -37,15 +38,15 @@ const Navbar = () => {
     }
 
     const handalViewMyFood = () => {
-        // goTo(`${userbase}/foods`)
+        goTo(`${userbase}/items`)
     }
 
     const handalMyOrders = () => {
-        // goTo(`${userbase}/orders`)
+        goTo(`${userbase}/my_orders`)
     }
 
     const handalAddFood = () => {
-        // goTo(`/add_foods`)
+        goTo(`/add_items`)
     }
 
     return (
