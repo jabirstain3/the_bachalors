@@ -3,9 +3,15 @@ import { useToRoute } from "../../hooks/navigation/useToRoute";
 
 const ItemDetailsCard = ({ item }) => {
     const goTo = useToRoute();
-    // console.log(item);
+    console.log(item);
+    const user ={
+        displayName: "Anna",
+        email: "anna@example.com",
+    }
 
-    const { _id:id = "3862soE5gj6", foodName: name = "", images = "", description = "", foodCategory = "", price = "", sold = "", quantity } = item;
+    document.title = `The Bachalors - ${item.foodName || "Item Details"}`;
+
+    const { _id:id = "3862soE5gj6", foodName: name = "", images = "", description = "", foodCategory = "", price = "", sold = "", quantity, usersEmail } = item;
 
     const order = {
         itemId: id,
@@ -61,7 +67,7 @@ const ItemDetailsCard = ({ item }) => {
                         </div>
 
                         <div className="flex flex-col md:flex-row gap-4">
-                            <button className="flex-1 py-3 px-4 rounded-lg  font-medium text-white btn_bg" onClick={handelPurchase}>
+                            <button className="flex-1 py-3 px-4 rounded-lg  font-medium text-white btn_bg" onClick={handelPurchase} isDisabled={usersEmail === user.email}>
                                 Purchase
                             </button>
                         </div>

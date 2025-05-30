@@ -10,6 +10,7 @@ import OrderItem from "../components/orderItem/OrderItem.jsx";
 import MyItemsLayout from "../layouts/myItemsLayoute/MyItemsLayout..jsx";
 import CreateItemLayout from "../layouts/createItemLayout/CreateItemLayout.jsx";
 import UpdateItemLayout from "../layouts/updateItemLayout/UpdateItemLayout.jsx";
+import MyOrderLayout from "../layouts/myOrderLayout/MyOrderLayout.jsx";
 
 const router = createBrowserRouter([
     {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
             {
                 path: ":userbase/items",
                 element: <MyItemsLayout />,                
+            },
+            {
+                path: ":userbase/my_orders",
+                element: <MyOrderLayout />,                
             },
         ]
     },

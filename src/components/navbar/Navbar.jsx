@@ -18,7 +18,8 @@ const Navbar = () => {
     
     const user = {
         name: "User",
-        photo: "user"
+        photo: "user",
+        email: "anna@example.com",
     }
 
     const userbase = user.email ? user.email.split('@')[0] : "user";
