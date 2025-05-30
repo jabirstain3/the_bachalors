@@ -13,7 +13,7 @@ const Category = () => {
             <div className="flex flex-wrap justify-center gap-6 my-10 md:mt-16 ">
                 {
                     catagory.map((c) => (
-                        <div className="w-1/2 md:w-1/4 max-w-44  mt-8 md:mt-0 p-4 rounded-lg relative bg-[#e6c88c56]">
+                        <div key={c.id} className="w-1/2 md:w-1/4 max-w-44  mt-8 md:mt-0 p-4 rounded-lg relative bg-[#e6c88c56]">
                             <img src={c.image} alt={c.name} className="w-[140px] h-[140px] object-cover rounded-full absolute -top-10 left-1/2 transform -translate-x-1/2 border-2 border-gray-600" />
 
                             <div className="flex mt-18 items-center justify-center">

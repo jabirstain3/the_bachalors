@@ -5,6 +5,8 @@ import ErrorPage from "../pages/errorPage/ErrorPage.jsx";
 import LogInPage from "../pages/logInPage/LogInPage.jsx";
 import RegistrationPage from "../pages/registrationPage/RegistrationPage.jsx";
 import AllItemsLayout from "../layouts/allItemsLayout/AllItemsLayout.jsx";
+import ItemDetailsLayout from "../layouts/itemDetailsLayout/ItemDetailsLayout.jsx";
+import OrderItem from "../components/orderItem/OrderItem.jsx";
 
 const router = createBrowserRouter([
     {
@@ -19,6 +21,14 @@ const router = createBrowserRouter([
             {
                 path: "items",
                 element: <AllItemsLayout />,                
+            },
+            {
+                path: "item/:id",
+                element: <ItemDetailsLayout />,                
+            },
+            {
+                path: "item/:id/puechase",
+                element: <OrderItem />,                
             },
         ]
     },

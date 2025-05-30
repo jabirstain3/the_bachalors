@@ -10,7 +10,7 @@ const Footer = () => {
         <footer className="bg-white py-10 md:py-12">
             <div className="sectionBase mx-4 md:mx-auto ">
                 <div className="flex justify-between gap-[30px] flex-col md:flex-row flex-wrap w-full">
-                    <div className="w-full sm:w-[25%] ">
+                    <div className="w-full md:w-[25%] ">
                         <NavLink to={'/'} className={`text-[1.8rem] font-bold`}>The  Bachalors</NavLink>
 
                         <div className="flex flex-col gap-[10px] text-slate-800 mt-2">
