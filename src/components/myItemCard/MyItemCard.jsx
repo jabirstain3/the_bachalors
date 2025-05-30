@@ -6,7 +6,7 @@ import { useToRoute } from '../../hooks/navigation/useToRoute';
 
 const MyItemCard = ({ item }) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const { _id:id, foodName: name, images, foodCategory , price, sold, quantity } = item;
+    const { _id:id, foodName: name, image, foodCategory , price, sold, quantity } = item;
     const goTo = useToRoute();
 
     const handalUpdateBtn = () => {
@@ -20,7 +20,7 @@ const MyItemCard = ({ item }) => {
     return (
         <div className="border border-gray-300 bg-[#e6c88c56] p-4 w-full max-w-[320px] md:max-w-[360px] relative rounded-xl overflow-hidden">
             {/* product image */}
-            <img alt={name} src={images} className="w-full aspect-square"/>
+            <img alt={name} src={image} className="w-full aspect-square"/>
 
             {/* product details */}
             <div className="mt-2">
