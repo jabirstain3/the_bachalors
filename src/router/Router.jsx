@@ -9,6 +9,7 @@ import ItemDetailsLayout from "../layouts/itemDetailsLayout/ItemDetailsLayout.js
 import OrderItem from "../components/orderItem/OrderItem.jsx";
 import MyItemsLayout from "../layouts/myItemsLayoute/MyItemsLayout..jsx";
 import CreateItemLayout from "../layouts/createItemLayout/CreateItemLayout.jsx";
+import UpdateItemLayout from "../layouts/updateItemLayout/UpdateItemLayout.jsx";
 
 const router = createBrowserRouter([
     {
@@ -25,8 +26,16 @@ const router = createBrowserRouter([
                 element: <AllItemsLayout />,                
             },
             {
+                path: "add_items",
+                element: <CreateItemLayout />,                
+            },
+            {
                 path: "item/:id",
                 element: <ItemDetailsLayout />,                
+            },
+            {
+                path: "item/:id/update",
+                element: <UpdateItemLayout />,                
             },
             {
                 path: "item/:id/puechase",
@@ -35,10 +44,6 @@ const router = createBrowserRouter([
             {
                 path: ":userbase/items",
                 element: <MyItemsLayout />,                
-            },
-            {
-                path: "add_items",
-                element: <CreateItemLayout />,                
             },
         ]
     },
