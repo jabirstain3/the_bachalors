@@ -18,11 +18,11 @@ const TopFoods = ( ) => {
 
             <div className="flex flex-wrap justify-center gap-4">
                 { 
-                    items && items.length > 0 ? 
+                    items && items?.length > 0 ? 
                     (
-                        items.map((item) => <FoodCard key={item.id || item._id} item={item} />)
+                        items?.map((item) => <FoodCard key={item.id || item._id} item={item} />)
                     ) : 
-                    items && items.length === 0 ? (
+                    items && items?.length === 0 ? (
                         <div className="w-full border bg-white rounded-lg flex justify-center items-center h-[360px]">
                             <p className="">No items available.</p>
                         </div>
